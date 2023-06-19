@@ -5,7 +5,7 @@ const db = require('./models');
 
 // Routers
 const userRouter = require('./routes/User');
-app.use('/user', userRouter);
+app.use('/users', userRouter);
 
 
 

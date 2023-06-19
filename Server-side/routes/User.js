@@ -2,17 +2,26 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../models');
 
+//Routers
+
 // GET /user 
 
-router.post('/', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const userData = req.body;
-    const createdUser = await User.create(userData);
-    res.json(createdUser);
+    const users = await User.findAll();
+    res.json(users);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Failed to create user', message: error.message });
+    res.status(500).json({ error: 'Failed to retrieve users', message: error.message });
   }
 });
 
+// POST /user
+
+router.post('/', async (req, res) => {
+const user = req.body;
+await User.create(user);
+res.json(user);
+
+});
 module.exports = router;
